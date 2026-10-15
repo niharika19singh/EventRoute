@@ -109,8 +109,8 @@ export default function EventMap({
         zoomControl={true}
       >
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           maxZoom={19}
         />
 
@@ -190,9 +190,9 @@ export default function EventMap({
           <Polyline
             positions={activeRoute.polyline}
             pathOptions={{
-              color: '#06B6D4',
+              color: '#4F46E5',
               weight: 5,
-              opacity: 0.85,
+              opacity: 0.9,
               lineCap: 'round',
               lineJoin: 'round',
             }}
