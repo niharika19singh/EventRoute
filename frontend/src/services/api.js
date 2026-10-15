@@ -3,7 +3,10 @@
  * Handles communication with the FastAPI backend for events, routing, and TinyFish intelligence.
  */
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL.replace(/\/+$/, '')}/api`
+  : '/api';
+
 
 export async function fetchColleges() {
   try {
@@ -15,6 +18,18 @@ export async function fetchColleges() {
     return [];
   }
 }
+
+export async function fetchNearestColleges(lat, lng, limit = 1) {
+  try {
+    const res = await fetch(`${API_BASE}/colleges/nearest?lat=${lat}&lng=${lng}&limit=${limit}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('API error fetching nearest colleges:', err);
+    return [];
+  }
+}
+
 
 export async function fetchEvents(params = {}) {
   const query = new URLSearchParams();
